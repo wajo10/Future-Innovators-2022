@@ -1,0 +1,137 @@
+-- table for patient's info 
+CREATE TABLE Patient(
+	idPatient VARCHAR NOT NULL,
+	Name VARCHAR NOT NULL,
+	Email VARCHAR,
+	Birthdate DATE,
+	PhoneNumber VARCHAR,
+	Location VARCHAR,
+	Height FLOAT,
+	Weight FLOAT,
+	
+	CONSTRAINT PK_Patient PRIMARY KEY (idPatient)
+);
+
+-- table for patient's measurements. 
+CREATE TABLE Measurement (
+	idMeasure SERIAL NOT NULL,
+	idPatient VARCHAR NOT NULL,
+	Oxygen FLOAT NOT NULL,
+	Temperature FLOAT NOT NULL,
+	BloodPressure FLOAT NOT NULL,
+	Pulse FLOAT NOT NULL,
+	DateAndTime Timestamp NOT NULL,
+	
+	CONSTRAINT PK_Measurement PRIMARY KEY (idMeasure)
+);
+-- table with doctor's info.
+CREATE TABLE Doctor (
+	idDoctor VARCHAR NOT NULL,
+	Name VARCHAR NOT NULL,
+	Birthdate date,
+	PhoneNumber VARCHAR,
+	Clinic VARCHAR,
+	Location VARCHAR,
+	Email VARCHAR,
+	Specialty VARCHAR,
+	NameOfArea VARCHAR,
+	
+	CONSTRAINT PK_Doctor PRIMARY KEY (idDoctor)
+);
+
+-- table for the doctor's specialty area.
+CREATE TABLE Area (
+	idArea SERIAL NOT NULL,
+	Name VARCHAR NOT NULL, 
+	
+	CONSTRAINT PK_Area PRIMARY KEY (idArea)
+);
+
+-- table to assign area to a doctor
+CREATE TABLE AssignedArea (
+	idAssignment SERIAL NOT NULL,
+	idArea INT NOT NULL,
+	idDoctor VARCHAR NOT NULL,
+	
+	CONSTRAINT PK_AssignedArea PRIMARY KEY (idAssignment)
+);
+
+-- table for list of illnesses 
+CREATE TABLE Illness (
+	idPatient VARCHAR NOT NULL,
+	idIllness SERIAL NOT NULL,
+	Name VARCHAR NOT NULL,
+	
+	CONSTRAINT PK_Illness PRIMARY KEY (idIllness)
+);
+
+-- table for list of allergies
+CREATE TABLE Allergy (
+	idPatient VARCHAR NOT NULL,
+	idAllergy SERIAL NOT NULL,
+	Name VARCHAR NOT NULL,
+	
+	CONSTRAINT PK_Alergy PRIMARY KEY (idAllergy)
+);
+
+-- table for list the medications.
+CREATE TABLE Medication (
+	idPatient VARCHAR NOT NULL,
+	idMedication SERIAL NOT NULL,
+	Name VARCHAR NOT NULL,
+	Dose VARCHAR NOT NULL,
+	
+	CONSTRAINT PK_Medication PRIMARY KEY (idMedication)
+);
+
+-- table for assignment between doctor's area and the doctor him/herself
+CREATE TABLE Assignment (
+	idAssignment SERIAL NOT NULL,
+	idPatient VARCHAR NOT NULL,
+	idDoctor VARCHAR NOT NULL,
+	
+	CONSTRAINT PK_Assignment PRIMARY KEY (idAssignment)
+);
+
+-- foreign key for measurement
+ALTER TABLE Measurement ADD CONSTRAINT FK_Measurement_Patient
+FOREIGN KEY(idPatient) REFERENCES Patient (idPatient)
+ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- foreign key for assignment
+-- patient assignment
+ALTER TABLE Assignment ADD CONSTRAINT FK_Assignment_Patient
+FOREIGN KEY(idPatient) REFERENCES Patient (idPatient)
+ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- doctor assignment
+ALTER TABLE Assignment ADD CONSTRAINT FK_Assignment_Doctor
+FOREIGN KEY(idDoctor) REFERENCES Doctor (idDoctor)
+ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- foreign key for "medical history"
+-- illness-patient
+ALTER TABLE Illness ADD CONSTRAINT FK_Illness_Patient
+FOREIGN KEY(idPatient) REFERENCES Patient (idPatient)
+ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- allergy-patient
+ALTER TABLE Allergy ADD CONSTRAINT FK_Allergy_Patient
+FOREIGN KEY(idPatient) REFERENCES Patient (idPatient)
+ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- medication-patient
+ALTER TABLE Medication ADD CONSTRAINT FK_Medication_Patient
+FOREIGN KEY(idPatient) REFERENCES Patient (idPatient)
+ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- foreign key for "doctor area assignment"
+-- area key
+ALTER TABLE AssignedArea ADD CONSTRAINT FK_Area
+FOREIGN KEY(idArea) REFERENCES Area (idArea)
+ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- doctor key
+ALTER TABLE AssignedArea ADD CONSTRAINT FK_Doctor_Area
+FOREIGN KEY(idDoctor) REFERENCES Doctor (idDoctor)
+ON DELETE RESTRICT ON UPDATE RESTRICT;

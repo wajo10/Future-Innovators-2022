@@ -1,0 +1,25 @@
+CREATE OR REPLACE FUNCTION addMeasurement(idPatient_r VARCHAR,
+										  Oxygen_r FLOAT,
+										  Temperature_r FLOAT,
+										  BloodPressure_r FLOAT,
+										  Pulse_r FLOAT) RETURNS VOID AS
+										  
+	$$
+	INSERT INTO Measurement(idPatient, Oxygen, Temperature, BloodPressure, Pulse)
+	VALUES (idPatient_r, Oxygen_r, Temperature_r, BloodPressure_r, Pulse_r)
+	$$
+LANGUAGE SQL;
+
+CREATE OR REPLACE FUNCTION registerUser(idPatient_r VARCHAR,
+										Name_r VARCHAR,
+										Email_r VARCHAR,
+										Birthdate_r DATE,
+										PhoneNumber_r VARCHAR,
+										Location_r VARCHAR,
+										Height_r FLOAT,
+										Weight_r FLOAT) RETURNS VOID AS
+	$$
+	INSERT INTO Patient(idPatient, Name, Email, Birthdate, PhoneNumber, Location, Height, Weight)
+	VALUES (idPatient_r, Name_r, Email_r, Birthdate_r, Phonenumber_r, Location_r, Height_r, Weight_r)
+	$$
+LANGUAGE SQL;

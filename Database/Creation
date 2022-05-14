@@ -8,6 +8,7 @@ CREATE TABLE Patient(
 	Location VARCHAR,
 	Height FLOAT,
 	Weight FLOAT,
+	Password VARCHAR NOT NULL,
 	
 	CONSTRAINT PK_Patient PRIMARY KEY (idPatient)
 );
@@ -35,6 +36,7 @@ CREATE TABLE Doctor (
 	Email VARCHAR,
 	Specialty VARCHAR,
 	NameOfArea VARCHAR,
+	Password VARCHAR NOT NULL,
 	
 	CONSTRAINT PK_Doctor PRIMARY KEY (idDoctor)
 );

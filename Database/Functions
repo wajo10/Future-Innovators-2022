@@ -1,3 +1,6 @@
+--CREATE EXTENSION pgcrypto;
+
+-- adding patient's MEASUREMENTS
 CREATE OR REPLACE FUNCTION addMeasurement(idPatient_r VARCHAR,
 										  Oxygen_r FLOAT,
 										  Temperature_r FLOAT,
@@ -6,10 +9,12 @@ CREATE OR REPLACE FUNCTION addMeasurement(idPatient_r VARCHAR,
 										  
 	$$
 	INSERT INTO Measurement(idPatient, Oxygen, Temperature, BloodPressure, Pulse)
-	VALUES (idPatient_r, Oxygen_r, Temperature_r, BloodPressure_r, Pulse_r)
+	VALUES(idPatient_r, Oxygen_r, Temperature_r, BloodPressure_r, Pulse_r)
 	$$
 LANGUAGE SQL;
 
+
+-- register data for USERS/PATIENTS
 CREATE OR REPLACE FUNCTION registerUser(idPatient_r VARCHAR,
 										Name_r VARCHAR,
 										Email_r VARCHAR,
@@ -17,9 +22,229 @@ CREATE OR REPLACE FUNCTION registerUser(idPatient_r VARCHAR,
 										PhoneNumber_r VARCHAR,
 										Location_r VARCHAR,
 										Height_r FLOAT,
-										Weight_r FLOAT) RETURNS VOID AS
+										Weight_r FLOAT,
+									   	Password_r VARCHAR) RETURNS VOID AS
 	$$
-	INSERT INTO Patient(idPatient, Name, Email, Birthdate, PhoneNumber, Location, Height, Weight)
-	VALUES (idPatient_r, Name_r, Email_r, Birthdate_r, Phonenumber_r, Location_r, Height_r, Weight_r)
+	
+	DECLARE
+		EncodedPassword varchar;
+	Begin
+		SELECT crypt(Password_r, gen_salt('bf', 4)) into EncodedPassword;
+		
+	INSERT INTO Patient(idPatient, Name, Email, Birthdate, PhoneNumber, Location, Height, Weight, Password)
+	VALUES(idPatient_r, Name_r, Email_r, Birthdate_r, Phonenumber_r, Location_r, Height_r, Weight_r, EncodedPassword);
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- modifying data for USER
+CREATE OR REPLACE FUNCTION modifyUser(idPatient_r VARCHAR,
+										Name_r VARCHAR,
+										Email_r VARCHAR,
+										Birthdate_r DATE,
+										PhoneNumber_r VARCHAR,
+										Location_r VARCHAR,
+										Height_r FLOAT,
+										Weight_r FLOAT,
+									   	Password_r VARCHAR) RETURNS VOID AS
+	$$
+	
+	DECLARE
+		EncodedPassword VARCHAR;
+	Begin
+		SELECT crypt(Password_r, gen_salt('bf', 4)) into EncodedPassword;
+		
+	UPDATE Patient
+	SET Name = Name_r, 
+		Email = Email_r,
+		Birthdate = Birthdate_r,
+		PhoneNumber = PhoneNumber_r,
+		Location = Location_r,
+		Height = Height_r,
+		Weight = Weight_r,
+		Password = EncodedPassword
+	WHERE idpatient = idPatient_r;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- register data for DOCTOR
+CREATE OR REPLACE FUNCTION registerDoctor(Name_r VARCHAR,
+										 Birthdate date,
+										 PhoneNumber_r VARCHAR,
+										 Clinic_r VARCHAR,
+										 Location_r VARCHAR,
+										 Email_r VARCHAR,
+										 Specialty_r VARCHAR,
+										 NameOfArea_r VARCHAR,
+										 Password_r VARCHAR) RETURNS VOID AS
+	$$
+	DECLARE
+		EncodedPassword VARCHAR;
+	Begin
+		SELECT crypt(Password_r, gen_salt('bf', 4)) into EncodedPassword;
+		
+	INSERT INTO Doctor(Name, Birthdate, PhoneNumber, CLinic, Location, Email, Specialty, NameOfArea, Password)
+	VALUES(Name_r, Birthdate_r, PhoneNumber_r, Clinic_r, Location_r, Email_r, Specialty_r, NameOfArea_r, EncodedPassword);
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- modify data for DOCTOR
+CREATE OR REPLACE FUNCTION modifyDoctor(Name_r VARCHAR,
+									   	Birthdate_r VARCHAR,
+									   	PhoneNumber_r VARCHAR,
+									   	Clinic_r VARCHAR,
+									   	Location_r VARCHAR,
+										Email_r VARCHAR,
+										Specialty_r VARCHAR,
+										NameOfArea_r VARCHAR) RETURNS VOID AS
+	$$
+	
+	DECLARE
+		EncodedPassword varchar;
+	Begin
+		SELECT crypt(Password_r, gen_salt('bf', 4)) into EncodedPassword;
+		
+	UPDATE Doctor
+	SET Name = Name_r, 
+		Birthdate = Birthdate_r,
+		PhoneNumber = PhoneNumber_r,
+		Clinic = Clinic_r,
+		Location = Location_r,
+		Email = Email_r,
+		Specialty = Specialty_r,
+		NameOfArea = NameOfArea_r
+	WHERE idpatient = idPatient_r;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- add AREA data for doctor
+CREATE OR REPLACE FUNCTION addArea(Name_r VARCHAR) RETURNS VOID AS
+	$$
+	INSERT INTO Area(Name)
+	VALUES(Name_r)
 	$$
 LANGUAGE SQL;
+
+
+-- add ASSIGNMENT for patient-doctor
+CREATE OR REPLACE FUNCTION addAssignment(idPatient_r VARCHAR,
+										idDoctor_r VARCHAR) RETURNS VOID AS
+	$$
+	INSERT INTO Assignment(idPatient, idDoctor)
+	VALUES (idPatient_r, idDoctor_r)
+	$$
+LANGUAGE SQL;
+
+
+-- add ILLNESS for patient
+CREATE OR REPLACE FUNCTION addIllness(Name_r VARCHAR) RETURNS VOID AS
+	$$
+	INSERT INTO Illness(Name)
+	VALUES(Name_r)
+	$$
+LANGUAGE SQL;
+
+
+-- add ALLERGY for patient
+CREATE OR REPLACE FUNCTION addAllergy(Name_r VARCHAR) RETURNS VOID AS
+	$$
+	INSERT INTO Allergy(Name)
+	VALUES(Name_r)
+	$$
+LANGUAGE SQL;
+
+
+-- add MEDICATION for patient
+CREATE OR REPLACE FUNCTION addMedication(Name_r VARCHAR,
+										Dose_r VARCHAR) RETURNS VOID AS
+	$$
+	INSERT INTO Medication(Name, Dose)
+	VALUES(Name_r, Dose_r)
+	$$
+LANGUAGE SQL;
+
+
+-- log in for PATIENT
+CREATE OR REPLACE FUNCTION loginPatient(idPatient_r VARCHAR,
+										Password_r VARCHAR) RETURNS Patient AS 
+	$$
+	(SELECT * FROM Patient WHERE idPatient_r = idPatient and Password = crypt(Password_r, Password))
+	$$
+Language SQL;
+
+
+-- log in for Doctor
+CREATE OR REPLACE FUNCTION loginDoctor(idDoctor_r VARCHAR,
+										Password_r VARCHAR) RETURNS Doctor AS 
+	$$
+	(SELECT * FROM Doctor WHERE idDoctor_r = idDoctor and Password = crypt(Password_r, Password))
+	$$
+Language SQL;
+
+-- get MEASUREMENTS data
+CREATE OR REPLACE FUNCTION getMeasurements (idPatient_r VARCHAR) RETURNS SETOF Measurement AS 
+	$$
+	SELECT * FROM Measurement WHERE idPatient = idPatient_r ORDER BY idMeasure DESC
+	$$
+LANGUAGE SQL;
+
+
+-- get DOCTOR data
+CREATE OR REPLACE FUNCTION getDoctor (idDoctor VARCHAR) RETURNS SETOF Doctor AS
+	$$
+	SELECT * FROM Doctor
+	$$
+LANGUAGE SQL;
+
+
+-- get AREA data
+CREATE OR REPLACE FUNCTION getArea(idDoctor_r VARCHAR) RETURNS SETOF AssignedArea AS
+	$$
+	SELECT * FROM AssignedArea WHERE idDoctor = idDoctor_r
+	$$
+LANGUAGE SQL;
+
+
+-- get ILLNESS data
+CREATE OR REPLACE FUNCTION getIllness (idPatient_r VARCHAR) RETURNS SETOF Illness AS 
+	$$
+	SELECT * FROM Illness WHERE idPatient = idPatient_r ORDER BY idIllness DESC
+	$$
+LANGUAGE SQL;
+
+
+-- get ALLERGY data
+CREATE OR REPLACE FUNCTION getAllergy (idPatient_r VARCHAR) RETURNS SETOF Allergy AS 
+	$$
+	SELECT * FROM Allergy WHERE idPatient = idPatient_r ORDER BY idAllergy DESC
+	$$
+LANGUAGE SQL;
+
+
+-- get MEDICATION data
+CREATE OR REPLACE FUNCTION getMedication (idPatient_r VARCHAR) RETURNS SETOF Medication AS 
+	$$
+	SELECT * FROM Medication WHERE idPatient = idPatient_r ORDER BY idMedication DESC
+	$$
+LANGUAGE SQL;
+
+
+-- get DOCTOR'S PATIENTS
+CREATE OR REPLACE FUNCTION getDoctorPatient (idDoctor_r VARCHAR) RETURNS SETOF Assignment AS
+	$$
+	SELECT * FROM Assignment WHERE idDoctor = idDoctor_r;
+	$$
+LANGUAGE SQL;
+
+
+-- get PATIENT'S DOCTORS
+CREATE OR REPLACE FUNCTION getPatientDoctor (idPatient_r VARCHAR) RETURNS SETOF Assignment AS
+	$$
+	SELECT * FROM Assignment WHERE idPatient = idPatient_r;
+	$$
+LANGUAGE SQL;
+
+

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documentos\\Talenttec\\WRO 2022\\Future Innovators\\Future-Innovators-2022\\Server\\Server\\Server.csproj": {}
+    "C:\\Users\\Fabiola\\Documents\\Future-Innovators-2022\\Server\\Server\\Server.csproj": {}
   },
   "projects": {
-    "D:\\Documentos\\Talenttec\\WRO 2022\\Future Innovators\\Future-Innovators-2022\\Server\\Server\\Server.csproj": {
+    "C:\\Users\\Fabiola\\Documents\\Future-Innovators-2022\\Server\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\Talenttec\\WRO 2022\\Future Innovators\\Future-Innovators-2022\\Server\\Server\\Server.csproj",
+        "projectUniqueName": "C:\\Users\\Fabiola\\Documents\\Future-Innovators-2022\\Server\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "D:\\Documentos\\Talenttec\\WRO 2022\\Future Innovators\\Future-Innovators-2022\\Server\\Server\\Server.csproj",
-        "packagesPath": "C:\\Users\\wajib\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\Talenttec\\WRO 2022\\Future Innovators\\Future-Innovators-2022\\Server\\Server\\obj\\",
+        "projectPath": "C:\\Users\\Fabiola\\Documents\\Future-Innovators-2022\\Server\\Server\\Server.csproj",
+        "packagesPath": "C:\\Users\\Fabiola\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Fabiola\\Documents\\Future-Innovators-2022\\Server\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\wajib\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Fabiola\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

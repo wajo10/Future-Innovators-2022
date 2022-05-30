@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Ztof7YgsSG4LqBG3S9/gL7DTPpxR38YX+8bk81yhYtVe3IcIcl706EhEFZ57LtQ08CVxSgPmoXrGosRGZvQ0vw==",
+  "dgSpecHash": "zPp1QSSRaJwN9/ir+UcLMQ0bLaUH3UKFOA7wM21D7K4frsNP+3YRDorlU8BXgGEAsRa3VupRRe6h1F78SV9OCw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Fabiola\\Documents\\Future-Innovators-2022\\Server\\Server\\Server.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Fabiola\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Fabiola\\.nuget\\packages\\npgsql\\6.0.4\\npgsql.6.0.4.nupkg.sha512",
+    "C:\\Users\\Fabiola\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

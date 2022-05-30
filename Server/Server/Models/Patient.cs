@@ -10,7 +10,7 @@ namespace Server.Models
         public string idpatient { get; set; }
         public string name { get; set; }
         public string email;
-        public string birthdate;
+        public DateTime birthdate;
         public string phonenumber;
         public string location;
         public float height;

@@ -89,7 +89,6 @@ CREATE OR REPLACE FUNCTION registerDoctor(Name_r VARCHAR,
 END;
 $$ LANGUAGE plpgsql;
 
-
 -- modify data for DOCTOR
 CREATE OR REPLACE FUNCTION modifyDoctor(Name_r VARCHAR,
 									   	Birthdate_r VARCHAR,
@@ -175,7 +174,6 @@ CREATE OR REPLACE FUNCTION loginPatient(idPatient_r VARCHAR,
 	$$
 Language SQL;
 
-
 -- log in for Doctor
 CREATE OR REPLACE FUNCTION loginDoctor(idDoctor_r VARCHAR,
 										Password_r VARCHAR) RETURNS Doctor AS 
@@ -190,7 +188,6 @@ CREATE OR REPLACE FUNCTION getMeasurements (idPatient_r VARCHAR) RETURNS SETOF M
 	SELECT * FROM Measurement WHERE idPatient = idPatient_r ORDER BY idMeasure DESC
 	$$
 LANGUAGE SQL;
-
 
 -- get DOCTOR data
 CREATE OR REPLACE FUNCTION getDoctor (idDoctor VARCHAR) RETURNS SETOF Doctor AS

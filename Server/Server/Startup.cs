@@ -22,6 +22,11 @@ namespace Server
             Configuration = configuration;
         }
 
+        public static string getKey()
+        {
+            return "Server = mycure.postgres.database.azure.com port = 5432 dbname =MyCure user = Mycure password =Jap93142"
+        }
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.

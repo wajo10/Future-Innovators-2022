@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mycure</string>
+    <string name="title_text">Welcome</string>
+    <string name="subtitle_text">Sign into your account, or create a new one.</string>
+    <string name="sign_up_button">TODO</string>
+    <string name="log_in_button">TODO</string>
+</resources>

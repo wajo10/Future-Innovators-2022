@@ -24,7 +24,7 @@ namespace Server
 
         public static string getKey()
         {
-            return "Server = mycure.postgres.database.azure.com port = 5432 dbname =MyCure user = Mycure password =Jap93142"
+            return "Server = mycure.postgres.database.azure.com; Database =MyCure; Port = 5432; User Id =Mycure; password =Jap93142;";
         }
 
         public IConfiguration Configuration { get; }

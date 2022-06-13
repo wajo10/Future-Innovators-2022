@@ -4,4 +4,8 @@
     <string name="subtitle_text">Sign into your account, or create a new one.</string>
     <string name="sign_up_button">TODO</string>
     <string name="log_in_button">TODO</string>
+    <string name="log_in">Log In</string>
+    <string name="back">Back</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in_">Log In</string>
 </resources>

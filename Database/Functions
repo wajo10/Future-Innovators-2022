@@ -5,11 +5,12 @@ CREATE OR REPLACE FUNCTION addMeasurement(idPatient_r VARCHAR,
 										  Oxygen_r FLOAT,
 										  Temperature_r FLOAT,
 										  BloodPressure_r FLOAT,
-										  Pulse_r FLOAT) RETURNS VOID AS
+										  Pulse_r FLOAT,
+                                          Timestamp_r Timestamp) RETURNS VOID AS
 										  
 	$$
-	INSERT INTO Measurement(idPatient, Oxygen, Temperature, BloodPressure, Pulse)
-	VALUES(idPatient_r, Oxygen_r, Temperature_r, BloodPressure_r, Pulse_r)
+	INSERT INTO Measurement(idPatient, Oxygen, Temperature, BloodPressure, Pulse, DateAndTime)
+	VALUES(idPatient_r, Oxygen_r, Temperature_r, BloodPressure_r, Pulse_r, Timestamp_r)
 	$$
 LANGUAGE SQL;
 
@@ -69,7 +70,8 @@ $$ LANGUAGE plpgsql;
 
 
 -- register data for DOCTOR
-CREATE OR REPLACE FUNCTION registerDoctor(Name_r VARCHAR,
+CREATE OR REPLACE FUNCTION registerDoctor(idDoctor VARCHAR,
+                                         Name_r VARCHAR,
 										 Birthdate date,
 										 PhoneNumber_r VARCHAR,
 										 Clinic_r VARCHAR,
@@ -90,7 +92,8 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- modify data for DOCTOR
-CREATE OR REPLACE FUNCTION modifyDoctor(Name_r VARCHAR,
+CREATE OR REPLACE FUNCTION modifyDoctor(idDoctor_r VARCHAR,
+                                        Name_r VARCHAR,
 									   	Birthdate_r VARCHAR,
 									   	PhoneNumber_r VARCHAR,
 									   	Clinic_r VARCHAR,
@@ -114,7 +117,7 @@ CREATE OR REPLACE FUNCTION modifyDoctor(Name_r VARCHAR,
 		Email = Email_r,
 		Specialty = Specialty_r,
 		NameOfArea = NameOfArea_r
-	WHERE idpatient = idPatient_r;
+	WHERE idDoctor = idDoctor_r;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -128,6 +131,14 @@ CREATE OR REPLACE FUNCTION addArea(Name_r VARCHAR) RETURNS VOID AS
 LANGUAGE SQL;
 
 
+-- get Area
+CREATE OR REPLACE FUNCTION getArea(idArea_r INT) RETURNS Area AS
+	$$
+	SELECT * FROM Area
+	WHERE idArea = idArea_r;
+	$$
+LANGUAGE SQL;
+
 -- add ASSIGNMENT for patient-doctor
 CREATE OR REPLACE FUNCTION addAssignment(idPatient_r VARCHAR,
 										idDoctor_r VARCHAR) RETURNS VOID AS
@@ -139,29 +150,29 @@ LANGUAGE SQL;
 
 
 -- add ILLNESS for patient
-CREATE OR REPLACE FUNCTION addIllness(Name_r VARCHAR) RETURNS VOID AS
+CREATE OR REPLACE FUNCTION addIllness(Name_r VARCHAR, idPatient_r VARCHAR) RETURNS VOID AS
 	$$
-	INSERT INTO Illness(Name)
-	VALUES(Name_r)
+	INSERT INTO Illness(Name, idPatient)
+	VALUES(Name_r, idPatient_r)
 	$$
 LANGUAGE SQL;
 
 
 -- add ALLERGY for patient
-CREATE OR REPLACE FUNCTION addAllergy(Name_r VARCHAR) RETURNS VOID AS
+CREATE OR REPLACE FUNCTION addAllergy(Name_r VARCHAR, idPatient_r VARCHAR) RETURNS VOID AS
 	$$
-	INSERT INTO Allergy(Name)
-	VALUES(Name_r)
+	INSERT INTO Allergy(Name, idPatient)
+	VALUES(Name_r, idPatient_r)
 	$$
 LANGUAGE SQL;
 
-
 -- add MEDICATION for patient
 CREATE OR REPLACE FUNCTION addMedication(Name_r VARCHAR,
-										Dose_r VARCHAR) RETURNS VOID AS
+										Dose_r VARCHAR,
+                                        idPatient_r VARCHAR) RETURNS VOID AS
 	$$
-	INSERT INTO Medication(Name, Dose)
-	VALUES(Name_r, Dose_r)
+	INSERT INTO Medication(Name, Dose, idPatient)
+	VALUES(Name_r, Dose_r, idPatient_r)
 	$$
 LANGUAGE SQL;
 
@@ -198,7 +209,7 @@ LANGUAGE SQL;
 
 
 -- get AREA data
-CREATE OR REPLACE FUNCTION getArea(idDoctor_r VARCHAR) RETURNS SETOF AssignedArea AS
+CREATE OR REPLACE FUNCTION getAssignedArea(idDoctor_r VARCHAR) RETURNS SETOF AssignedArea AS
 	$$
 	SELECT * FROM AssignedArea WHERE idDoctor = idDoctor_r
 	$$
@@ -227,7 +238,7 @@ CREATE OR REPLACE FUNCTION getMedication (idPatient_r VARCHAR) RETURNS SETOF Med
 	SELECT * FROM Medication WHERE idPatient = idPatient_r ORDER BY idMedication DESC
 	$$
 LANGUAGE SQL;
-
+select * from allergy
 
 -- get DOCTOR'S PATIENTS
 CREATE OR REPLACE FUNCTION getDoctorPatient (idDoctor_r VARCHAR) RETURNS SETOF Assignment AS

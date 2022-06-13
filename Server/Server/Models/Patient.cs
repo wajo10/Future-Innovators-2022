@@ -9,12 +9,12 @@ namespace Server.Models
     {
         public string idpatient { get; set; }
         public string name { get; set; }
-        public string email;
-        public DateTime birthdate;
-        public string phonenumber;
-        public string location;
-        public float height;
-        public float weight;
+        public string email { get; set; }
+        public DateTime birthdate { get; set; }
+        public string phonenumber { get; set; }
+        public string location { get; set; }
+        public Double height { get; set; }
+        public Double weight { get; set; }
         public string password { get; set; }
 
     }

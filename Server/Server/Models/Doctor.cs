@@ -9,13 +9,13 @@ namespace Server.Models
     {
         public string iddoctor { get; set; }
         public string name { get; set; }
-        public DateTime birthdate;
-        public string phonenumber;
-        public string clinic;
-        public string location;
-        public string email;
-        public string specialty;
-        public string nameofarea;
+        public DateTime birthdate { get; set; }
+        public string phonenumber { get; set; }
+        public string clinic { get; set; }
+        public string location { get; set; }
+        public string email { get; set; }
+        public string specialty { get; set; }
+        public string nameofarea { get; set; }
         public string password { get; set; }
 
     }

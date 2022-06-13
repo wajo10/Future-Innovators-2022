@@ -3,11 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Fabiola/Documents/Future-Innovators-2022/App/app/src/main/res/drawable/button_gradient.xml" value="0.1945" />
         <entry key="..\:/Users/Fabiola/Documents/Future-Innovators-2022/App/app/src/main/res/drawable/gradient_bg.xml" value="0.1945" />
         <entry key="..\:/Users/Fabiola/Documents/Future-Innovators-2022/App/app/src/main/res/drawable/ic_sign_up_button.xml" value="0.1945" />
         <entry key="..\:/Users/Fabiola/Documents/Future-Innovators-2022/App/app/src/main/res/drawable/sign_up_button_press.xml" value="0.1945" />
         <entry key="..\:/Users/Fabiola/Documents/Future-Innovators-2022/App/app/src/main/res/font/roboto_thin.xml" value="0.23333333333333334" />
-        <entry key="..\:/Users/Fabiola/Documents/Future-Innovators-2022/App/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Fabiola/Documents/Future-Innovators-2022/App/app/src/main/res/layout/activity_log_in.xml" value="0.22" />
+        <entry key="..\:/Users/Fabiola/Documents/Future-Innovators-2022/App/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Fabiola/Documents/Future-Innovators-2022/App/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
       </map>
     </option>
   </component>

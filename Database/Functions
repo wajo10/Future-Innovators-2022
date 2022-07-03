@@ -70,9 +70,9 @@ $$ LANGUAGE plpgsql;
 
 
 -- register data for DOCTOR
-CREATE OR REPLACE FUNCTION registerDoctor(idDoctor VARCHAR,
+CREATE OR REPLACE FUNCTION registerDoctor(idDoctor_r VARCHAR,
                                          Name_r VARCHAR,
-										 Birthdate date,
+										 Birthdate_r date,
 										 PhoneNumber_r VARCHAR,
 										 Clinic_r VARCHAR,
 										 Location_r VARCHAR,
@@ -86,8 +86,8 @@ CREATE OR REPLACE FUNCTION registerDoctor(idDoctor VARCHAR,
 	Begin
 		SELECT crypt(Password_r, gen_salt('bf', 4)) into EncodedPassword;
 		
-	INSERT INTO Doctor(Name, Birthdate, PhoneNumber, CLinic, Location, Email, Specialty, NameOfArea, Password)
-	VALUES(Name_r, Birthdate_r, PhoneNumber_r, Clinic_r, Location_r, Email_r, Specialty_r, NameOfArea_r, EncodedPassword);
+	INSERT INTO Doctor(idDoctor, Name, Birthdate, PhoneNumber, CLinic, Location, Email, Specialty, NameOfArea, Password)
+	VALUES(idDoctor_r, Name_r, Birthdate_r, PhoneNumber_r, Clinic_r, Location_r, Email_r, Specialty_r, NameOfArea_r, EncodedPassword);
 END;
 $$ LANGUAGE plpgsql;
 
@@ -100,7 +100,8 @@ CREATE OR REPLACE FUNCTION modifyDoctor(idDoctor_r VARCHAR,
 									   	Location_r VARCHAR,
 										Email_r VARCHAR,
 										Specialty_r VARCHAR,
-										NameOfArea_r VARCHAR) RETURNS VOID AS
+										NameOfArea_r VARCHAR,
+                                        Password_r VARCHAR) RETURNS VOID AS
 	$$
 	
 	DECLARE
@@ -116,7 +117,8 @@ CREATE OR REPLACE FUNCTION modifyDoctor(idDoctor_r VARCHAR,
 		Location = Location_r,
 		Email = Email_r,
 		Specialty = Specialty_r,
-		NameOfArea = NameOfArea_r
+		NameOfArea = NameOfArea_r,
+        Password = Password_r
 	WHERE idDoctor = idDoctor_r;
 END;
 $$ LANGUAGE plpgsql;

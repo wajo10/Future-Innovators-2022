@@ -73,7 +73,7 @@ CREATE TABLE Allergy (
 	idAllergy SERIAL NOT NULL,
 	Name VARCHAR NOT NULL,
 	
-	CONSTRAINT PK_Alergy PRIMARY KEY (idAllergy)
+	CONSTRAINT PK_Allergy PRIMARY KEY (idAllergy)
 );
 
 -- table for list the medications.

@@ -53,7 +53,7 @@ namespace Server.Controllers
         {
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
             conn.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand("registerDoctor", conn);
+            NpgsqlCommand cmd = new NpgsqlCommand("registerdoctor", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("iddoctor_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.iddoctor);
             cmd.Parameters.AddWithValue("name_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.name);
@@ -82,7 +82,7 @@ namespace Server.Controllers
         {
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
             conn.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand("modifyDoctor", conn);
+            NpgsqlCommand cmd = new NpgsqlCommand("modifydoctor", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("iddoctor_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.iddoctor);
             cmd.Parameters.AddWithValue("name_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.name);

@@ -76,6 +76,7 @@ namespace Server.Controllers
             String json = JsonConvert.SerializeObject(var);
             return json;
         }
+
         // modify patient function
         [HttpPut]
         [Route("Patient")]

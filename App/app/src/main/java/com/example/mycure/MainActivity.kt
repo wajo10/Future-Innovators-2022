@@ -14,17 +14,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        val logInButton = findViewById<Button>(R.id.logInButton)
-        logInButton.setOnClickListener (View.OnClickListener {
+        val logInButton = findViewById<Button>(R.id.loginButtonWelcome)
+        val signUpButton = findViewById<Button>(R.id.signupButtonWelcome)
+
+        logInButton.setOnClickListener ((View.OnClickListener {
             val intent = Intent(this, LogIn::class.java)
             startActivity(intent)
-        })
+        }))
 
-        val signUpButton = findViewById<Button>(R.id.signUpButton)
-        signUpButton.setOnClickListener(View.OnClickListener {
+        signUpButton.setOnClickListener((View.OnClickListener {
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
-        })
+        }))
     }
 
 }

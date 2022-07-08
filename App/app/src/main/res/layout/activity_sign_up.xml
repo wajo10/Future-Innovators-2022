@@ -8,7 +8,7 @@
     tools:context=".SignUp">
 
     <TextView
-        android:id="@+id/signUpTitleText"
+        android:id="@+id/titleTextSignUp"
         android:layout_width="205dp"
         android:layout_height="67dp"
         android:hint="DD/MM/YYYY"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.051" />
 
     <TextView
-        android:id="@+id/signUpSubtitleText"
+        android:id="@+id/subtitleTextSignUp"
         android:layout_width="303dp"
         android:layout_height="64dp"
         android:text="Welcome to Mycure, let’s get you started. Enter your information in the fields below."
@@ -31,12 +31,13 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpTitleText"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextSignUp"
         app:layout_constraintVertical_bias="0.028" />
 
     <TextView
-        android:id="@+id/iAmASubtitleSignUp"
+        android:id="@+id/subtitle2TextSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="I am a..."
@@ -50,7 +51,7 @@
         app:layout_constraintVertical_bias="0.255" />
 
     <Button
-        android:id="@+id/signUpButton2"
+        android:id="@+id/signupButtonSignUp"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:backgroundTint="#BBC5FC"
@@ -80,7 +81,7 @@
         app:layout_constraintVertical_bias="0.928" />
 
     <EditText
-        android:id="@+id/fullNameEntrySignUp"
+        android:id="@+id/fullnameEntrySignUp"
         android:layout_width="308dp"
         android:layout_height="44dp"
         android:backgroundTint="#000000"
@@ -134,7 +135,7 @@
         app:layout_constraintVertical_bias="0.591" />
 
     <TextView
-        android:id="@+id/birthdateEnterTextSignUp"
+        android:id="@+id/subtitle3TextSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Birthdate:"

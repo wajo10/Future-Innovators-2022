@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 
 class LogIn : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +31,7 @@ class LogIn : AppCompatActivity() {
             var passwordString = passwordEntry.text.toString()
 
             // go to home page
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(this, HomePatient::class.java)
             startActivity(intent)
         }))
 

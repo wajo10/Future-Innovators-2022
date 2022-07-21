@@ -53,7 +53,7 @@ namespace Server.Controllers
         {
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
             conn.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand("registerdoctor", conn);
+            NpgsqlCommand cmd = new NpgsqlCommand("registerDoctor", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("iddoctor_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.iddoctor);
             cmd.Parameters.AddWithValue("name_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.name);
@@ -84,7 +84,7 @@ namespace Server.Controllers
             conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand("modifydoctor", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("iddoctor_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.iddoctor);
+            cmd.Parameters.AddWithValue("iddoctor_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.iddoctor); 
             cmd.Parameters.AddWithValue("name_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.name);
             cmd.Parameters.AddWithValue("birthdate_r", NpgsqlTypes.NpgsqlDbType.Date, doctor.birthdate);
             cmd.Parameters.AddWithValue("phonenumber_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.phonenumber);
@@ -140,8 +140,8 @@ namespace Server.Controllers
             return json;
 
         }
-
-        // get area function
+S
+        // get area assignment function
         [HttpGet]
         [Route("AssignedArea")]
         public List<Area> GetAreaAssignment([FromQuery] string iddoctor)

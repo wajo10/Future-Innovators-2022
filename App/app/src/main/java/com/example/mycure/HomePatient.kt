@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 
-class Home : AppCompatActivity() {
+class HomePatient : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_home_patient)
         supportActionBar?.hide()
 
         val backButton = findViewById<Button>(R.id.backButtonHome)

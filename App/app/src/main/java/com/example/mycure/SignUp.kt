@@ -13,6 +13,7 @@ class SignUp : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
         supportActionBar?.hide()
 
+        val userType = 0
         val backButton = findViewById<Button>(R.id.backButtonSignUp)
         val signUpButton = findViewById<Button>(R.id.signupButtonSignUp)
         val fullnameEntry = findViewById<EditText>(R.id.fullnameEntrySignUp)
@@ -35,8 +36,16 @@ class SignUp : AppCompatActivity() {
             var passwordString = passwordEntry.text.toString()
 
             // go to home
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
+            if(userType==1){
+                val intent = Intent(this, HomePatient::class.java)
+                startActivity(intent)
+            }
+
+            if(userType==2){
+                val intent = Intent(this, HomeDoctor::class.java)
+                startActivity(intent)
+            }
+
         }))
 
 

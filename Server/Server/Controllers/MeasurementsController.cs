@@ -46,7 +46,7 @@ namespace Server.Controllers
             List<Measurement> measurements = new List<Measurement>();
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
             conn.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand("getMeasurement", conn);
+            NpgsqlCommand cmd = new NpgsqlCommand("getMeasurements", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("idpatient_r", NpgsqlTypes.NpgsqlDbType.Varchar, idpatient);
             NpgsqlDataReader dr = cmd.ExecuteReader();
@@ -54,7 +54,14 @@ namespace Server.Controllers
             while (dr.Read())
             {
                 var measurement = new Measurement();
-                measurement.idpatient = dr[0].ToString();
+                measurement.idmeasurement = (int)dr[0];
+                measurement.idpatient = dr[1].ToString();
+                measurement.oxygen = (float)(double)dr[2];
+                measurement.temperature = (float)(double)dr[3];
+                measurement.bloodpressure = (float)(double)dr[4];
+                measurement.pulse = (float)(double)dr[5];
+                measurement.timestamp = (DateTime)dr[6];
+
                 measurements.Add(measurement);
 
             }

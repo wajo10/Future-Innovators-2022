@@ -28,19 +28,28 @@ namespace Server.Controllers
             cmd.Parameters.AddWithValue("iddoctor_r", NpgsqlTypes.NpgsqlDbType.Text, idDoctor);
             cmd.Parameters.AddWithValue("password_r", NpgsqlTypes.NpgsqlDbType.Text, password);
             NpgsqlDataReader dr = cmd.ExecuteReader();
-            conn.Close();
 
             while (dr.Read())
             {
-                doctor.iddoctor = dr[0].ToString();
-                doctor.name = dr[1].ToString();
-                doctor.birthdate = (DateTime)dr[2];
-                doctor.phonenumber = dr[3].ToString();
-                doctor.location = dr[4].ToString();
-                doctor.email = dr[5].ToString();
-                doctor.specialty = dr[6].ToString();
-                doctor.nameofarea = dr[7].ToString();
-                doctor.password = dr[8].ToString();
+                try
+                {
+                    doctor.iddoctor = dr[0].ToString();
+                    doctor.name = dr[1].ToString();
+                    doctor.birthdate = (DateTime)dr[2];
+                    doctor.phonenumber = dr[3].ToString();
+                    doctor.clinic = dr[4].ToString();
+                    doctor.location = dr[5].ToString();
+                    doctor.email = dr[6].ToString();
+                    doctor.specialty = dr[7].ToString();
+                    doctor.nameofarea = dr[8].ToString();
+                    doctor.password = dr[9].ToString();
+                }
+                catch
+                {
+                    conn.Close();
+                    return doctor;
+                }
+                
 
             }
             return doctor;
@@ -82,7 +91,7 @@ namespace Server.Controllers
         {
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
             conn.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand("modifydoctor", conn);
+            NpgsqlCommand cmd = new NpgsqlCommand("modifyDoctor", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("iddoctor_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.iddoctor); 
             cmd.Parameters.AddWithValue("name_r", NpgsqlTypes.NpgsqlDbType.Varchar, doctor.name);
@@ -117,6 +126,15 @@ namespace Server.Controllers
             {
                 var doctor = new Doctor();
                 doctor.iddoctor = dr[0].ToString();
+                doctor.name = dr[1].ToString();
+                doctor.birthdate = (DateTime)dr[2];
+                doctor.phonenumber = dr[3].ToString();
+                doctor.clinic = dr[4].ToString();
+                doctor.location = dr[5].ToString();
+                doctor.email = dr[6].ToString();
+                doctor.specialty = dr[7].ToString();
+                doctor.nameofarea = dr[8].ToString();
+                doctor.password = dr[9].ToString();
                 data.Add(doctor);
             }
 
@@ -140,21 +158,64 @@ namespace Server.Controllers
             return json;
 
         }
-S
-        // get area assignment function
-        [HttpGet]
-        [Route("AssignedArea")]
-        public List<Area> GetAreaAssignment([FromQuery] string iddoctor)
+
+        // add area doctor
+        [HttpPost]
+        [Route("AreaDoctor")]
+        public String AddAreaDoctor([FromBody] AssignedArea assignedArea)
         {
-            List<AssignedArea> assignedAreas = new List<AssignedArea>();
-            List<Area> areas = new List<Area>();
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
             conn.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand("getAssignedArea", conn);
+            NpgsqlCommand cmd = new NpgsqlCommand("addAreaDoctor", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("iddoctor_r", NpgsqlTypes.NpgsqlDbType.Varchar, iddoctor);
+            cmd.Parameters.AddWithValue("idarea_r", NpgsqlTypes.NpgsqlDbType.Integer, assignedArea.idarea);
+            cmd.Parameters.AddWithValue("iddoctor_r", NpgsqlTypes.NpgsqlDbType.Varchar, assignedArea.iddoctor);
+            int var = cmd.ExecuteNonQuery();
+            conn.Close();
+            String json = JsonConvert.SerializeObject(var);
+            return json;
+
+        }
+
+        // get assigned area from idarea
+        [HttpGet]
+        [Route("AreaArea")]
+        public List<AssignedArea> GetAreaArea([FromQuery] int idArea)
+        {
+            List<AssignedArea> data = new List<AssignedArea>();
+            NpgsqlConnection conn = new NpgsqlConnection(serverKey);
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand("getAssignedAreaArea", conn);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("idarea_r", NpgsqlTypes.NpgsqlDbType.Integer, idArea);
             NpgsqlDataReader dr = cmd.ExecuteReader();
-            
+
+            while (dr.Read())
+            {
+                var assignedArea = new AssignedArea();
+                assignedArea.idassignment = (int) dr[0];
+                assignedArea.idarea = (int)dr[1];
+                assignedArea.iddoctor = dr[2].ToString();
+
+                data.Add(assignedArea);
+            }
+
+            conn.Close();
+            return data;
+        }
+
+        // get area from doctor
+        [HttpGet]
+        [Route("AreaDoctor")]
+        public List<AssignedArea> GetAreaDoctor([FromQuery] int idDoctor)
+        {
+            List<AssignedArea> data = new List<AssignedArea>();
+            NpgsqlConnection conn = new NpgsqlConnection(serverKey);
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand("getAssignedAreaDoctor", conn);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("idarea_r", NpgsqlTypes.NpgsqlDbType.Integer, idDoctor);
+            NpgsqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
@@ -162,25 +223,34 @@ S
                 assignedArea.idassignment = (int)dr[0];
                 assignedArea.idarea = (int)dr[1];
                 assignedArea.iddoctor = dr[2].ToString();
-                assignedAreas.Add(assignedArea);
+
+                data.Add(assignedArea);
             }
 
-            foreach(AssignedArea assignedArea in assignedAreas)
+            conn.Close();
+            return data;
+        }
+
+
+        // get all areas
+        [HttpGet]
+        [Route("Area")]
+        public List<Area> GetAllAreas()
+        {
+            List<Area> areas = new List<Area>();
+            NpgsqlConnection conn = new NpgsqlConnection(serverKey);
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand("getAllAreas", conn);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
             {
-                conn.Open();
-                cmd = new NpgsqlCommand("getArea", conn);
-                cmd.Parameters.AddWithValue("idarea_r", NpgsqlTypes.NpgsqlDbType.Integer, assignedArea.idarea);
-                NpgsqlDataReader drArea = cmd.ExecuteReader();
-                while (drArea.Read())
-                {
-                    var area = new Area();
-                    area.idarea = (int)dr[0];
-                    area.name = dr[2].ToString();
-                    areas.Add(area);
-                }
-                conn.Close();
+                var area = new Area();
+                area.idarea = (int)dr[0];
+                area.name = dr[1].ToString();
+                areas.Add(area);
             }
-
             conn.Close();
             return areas;
         }
@@ -188,20 +258,22 @@ S
         // get doctor --> patient 
         [HttpGet]
         [Route("Assignment")]
-        public List<Assignment> GetDoctorPatientAssignment([FromQuery] string idpatient)
+        public List<Assignment> GetDoctorPatientAssignment([FromQuery] string iddoctor)
         {
             List<Assignment> assignments = new List<Assignment>();
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
             conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand("getDoctorPatient", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("idpatient_r", NpgsqlTypes.NpgsqlDbType.Varchar, idpatient);
+            cmd.Parameters.AddWithValue("iddoctor_r", NpgsqlTypes.NpgsqlDbType.Varchar, iddoctor);
             NpgsqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
                 var assignment = new Assignment();
-                assignment.idpatient = dr[0].ToString();
+                assignment.idassignment = (int)dr[0];
+                assignment.idpatient = dr[1].ToString();
+                assignment.iddoctor = dr[2].ToString();
                 assignments.Add(assignment);
             }
 

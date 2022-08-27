@@ -16,7 +16,7 @@ namespace Server.Controllers
         private string serverKey = Startup.getKey();
 
         // log in function
-        [HttpGet] 
+        [HttpGet]
         [Route("LogInPatient")]
         public Patient LogIn([FromQuery] string idPatient, string password)
         {
@@ -28,25 +28,34 @@ namespace Server.Controllers
             cmd.Parameters.AddWithValue("@idpatient_r", NpgsqlTypes.NpgsqlDbType.Text, idPatient);
             cmd.Parameters.AddWithValue("@password_r", NpgsqlTypes.NpgsqlDbType.Text, password);
             NpgsqlDataReader dr = cmd.ExecuteReader();
-            
+
 
             while (dr.Read())
             {
-                patient.idpatient = dr[0].ToString();
-                patient.name = dr[1].ToString();
-                patient.email = dr[2].ToString();
-                patient.birthdate = (DateTime)dr[3];
-                patient.phonenumber = dr[4].ToString();
-                patient.location = dr[5].ToString();
-                patient.height = (Double)dr[6];
-                patient.weight = (Double)dr[7];
-                patient.password = dr[8].ToString();
+                try
+                {
+                    patient.idpatient = dr[0].ToString();
+                    patient.name = dr[1].ToString();
+                    patient.email = dr[2].ToString();
+                    patient.birthdate = (DateTime)dr[3];
+                    patient.phonenumber = dr[4].ToString();
+                    patient.location = dr[5].ToString();
+                    patient.height = (Double)dr[6];
+                    patient.weight = (Double)dr[7];
+                    patient.password = dr[8].ToString();
+
+                }
+                catch
+                {
+                    conn.Close();
+                    return patient;
+                }
 
             }
             conn.Close();
             return patient;
-        }  
-        
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -84,7 +93,7 @@ namespace Server.Controllers
         {
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
             conn.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand("modifyPatient", conn);
+            NpgsqlCommand cmd = new NpgsqlCommand("modifyUser", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("idpatient_r", NpgsqlTypes.NpgsqlDbType.Varchar, patient.idpatient);
             cmd.Parameters.AddWithValue("name_r", NpgsqlTypes.NpgsqlDbType.Varchar, patient.name);
@@ -101,9 +110,42 @@ namespace Server.Controllers
             return json;
         }
 
+        // get patient data function 
+        [HttpGet]
+        [Route("Patient")]
+        public List<Patient> GetPatientData([FromQuery] string idpatient)
+        {
+            List<Patient> data = new List<Patient>();
+            NpgsqlConnection conn = new NpgsqlConnection(serverKey);
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand("getPatient", conn);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("idpatient_r", NpgsqlTypes.NpgsqlDbType.Varchar, idpatient);
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                var patient = new Patient();
+                patient.idpatient = dr[0].ToString();
+                patient.name = dr[1].ToString();
+                patient.email = dr[2].ToString();
+                patient.birthdate = (DateTime)dr[3];
+                patient.phonenumber = dr[4].ToString();
+                patient.location = dr[5].ToString();
+                patient.height = (Double)dr[6];
+                patient.weight = (Double)dr[7];
+                patient.password = dr[8].ToString();
+                data.Add(patient);
+            }
+
+            conn.Close();
+            return data;
+        }
+
+
         // add illness function
         [HttpPost]
-        [Route ("Illness")]
+        [Route("Illness")]
         public string AddIllness([FromBody] Illness illness)
         {
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
@@ -157,27 +199,27 @@ namespace Server.Controllers
         // get illnesses function
         [HttpGet]
         [Route("Illness")]
-        public List<Illness> GetIllness([FromQuery] int idillness)
+        public List<Illness> GetIllness([FromQuery] string idpatient)
         {
             List<Illness> illnesses = new List<Illness>();
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
             conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand("getIllness", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("idillness_r", NpgsqlTypes.NpgsqlDbType.Integer, idillness);
+            cmd.Parameters.AddWithValue("idpatient_r", NpgsqlTypes.NpgsqlDbType.Varchar, idpatient);
             NpgsqlDataReader dr = cmd.ExecuteReader();
-            
+
 
             while (dr.Read())
             {
                 var illness = new Illness();
-                illness.idillness = (int)dr[0];
+                illness.idpatient = dr[0].ToString();
+                illness.name = dr[2].ToString();
                 illnesses.Add(illness);
             }
 
             conn.Close();
             return illnesses;
-
         }
 
         // get allergies function
@@ -192,13 +234,13 @@ namespace Server.Controllers
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("idpatient_r", NpgsqlTypes.NpgsqlDbType.Varchar, idpatient);
             NpgsqlDataReader dr = cmd.ExecuteReader();
-            
+
 
             while (dr.Read())
             {
                 var allergy = new Allergy();
                 allergy.idpatient = dr[0].ToString();
-                allergy.name = dr[1].ToString();
+                allergy.name = dr[2].ToString();
                 allergies.Add(allergy);
             }
 
@@ -209,21 +251,23 @@ namespace Server.Controllers
         // get medications function
         [HttpGet]
         [Route("Medication")]
-        public List<Medication> GetMedication([FromQuery] int idmedication)
+        public List<Medication> GetMedication([FromQuery] string idpatient)
         {
             List<Medication> medications = new List<Medication>();
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
             conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand("getMedication", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("idmedication_r", NpgsqlTypes.NpgsqlDbType.Integer, idmedication);
+            cmd.Parameters.AddWithValue("idpatient_r", NpgsqlTypes.NpgsqlDbType.Varchar, idpatient);
             NpgsqlDataReader dr = cmd.ExecuteReader();
-            
+
 
             while (dr.Read())
             {
                 var medication = new Medication();
-                medication.idmedication = (int)dr[0];
+                medication.idpatient = dr[0].ToString();
+                medication.name = dr[2].ToString();
+                medication.dose = dr[3].ToString();
                 medications.Add(medication);
             }
 
@@ -234,21 +278,22 @@ namespace Server.Controllers
         // get patient --> doctor assignment
         [HttpGet]
         [Route("Assignment")]
-        public List<Assignment> GetPatientDoctorAssignment([FromQuery] string iddoctor)
+        public List<Assignment> GetPatientDoctorAssignment([FromQuery] string idpatient)
         {
             List<Assignment> assignments = new List<Assignment>();
             NpgsqlConnection conn = new NpgsqlConnection(serverKey);
             conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand("getPatientDoctor", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("iddoctor_r", NpgsqlTypes.NpgsqlDbType.Varchar, iddoctor);
+            cmd.Parameters.AddWithValue("idpatient_r", NpgsqlTypes.NpgsqlDbType.Varchar, idpatient);
             NpgsqlDataReader dr = cmd.ExecuteReader();
-            
 
             while (dr.Read())
             {
                 var assignment = new Assignment();
-                assignment.iddoctor = dr[0].ToString();
+                assignment.idassignment = (int)dr[0];
+                assignment.idpatient = dr[1].ToString();
+                assignment.iddoctor = dr[2].ToString();
                 assignments.Add(assignment);
             }
 
@@ -256,4 +301,5 @@ namespace Server.Controllers
             return assignments;
         }
     }
+
 }

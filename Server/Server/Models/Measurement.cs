@@ -9,10 +9,10 @@ namespace Server.Models
     {
         public int idmeasurement { get; set; }
         public string idpatient { get; set; }
-        public float oxygen { get; set; }
-        public float temperature { get; set; }
-        public float bloodpressure { get; set; }
-        public float pulse { get; set; }
+        public Double oxygen { get; set; }
+        public Double temperature { get; set; }
+        public Double bloodpressure { get; set; }
+        public Double pulse { get; set; }
         public DateTime timestamp { get; set; }
 
 

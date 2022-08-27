@@ -6,7 +6,7 @@ CREATE OR REPLACE FUNCTION addMeasurement(idPatient_r VARCHAR,
 										  Temperature_r FLOAT,
 										  BloodPressure_r FLOAT,
 										  Pulse_r FLOAT,
-                                          Timestamp_r Timestamp) RETURNS VOID AS
+                                          Timestamp_r DATE) RETURNS VOID AS
 										  
 	$$
 	INSERT INTO Measurement(idPatient, Oxygen, Temperature, BloodPressure, Pulse, DateAndTime)
@@ -94,7 +94,7 @@ $$ LANGUAGE plpgsql;
 -- modify data for DOCTOR
 CREATE OR REPLACE FUNCTION modifyDoctor(idDoctor_r VARCHAR,
                                         Name_r VARCHAR,
-									   	Birthdate_r VARCHAR,
+									   	Birthdate_r DATE,
 									   	PhoneNumber_r VARCHAR,
 									   	Clinic_r VARCHAR,
 									   	Location_r VARCHAR,
@@ -118,7 +118,7 @@ CREATE OR REPLACE FUNCTION modifyDoctor(idDoctor_r VARCHAR,
 		Email = Email_r,
 		Specialty = Specialty_r,
 		NameOfArea = NameOfArea_r,
-        Password = Password_r
+        Password = EncodedPassword
 	WHERE idDoctor = idDoctor_r;
 END;
 $$ LANGUAGE plpgsql;
@@ -140,6 +140,37 @@ CREATE OR REPLACE FUNCTION getArea(idArea_r INT) RETURNS Area AS
 	WHERE idArea = idArea_r;
 	$$
 LANGUAGE SQL;
+
+-- create AREA - DOCTOR assignment
+CREATE OR REPLACE FUNCTION addAreaDoctor(idArea_r INT, idDoctor_r VARCHAR) RETURNS VOID AS
+    $$
+    INSERT INTO AssignedArea(idArea, idDoctor)
+    VALUES(idArea_r, idDoctor_r)
+    $$
+LANGUAGE SQL; 
+
+-- get ASSIGNED area (area)
+CREATE OR REPLACE FUNCTION getAssignedAreaArea(idArea_r INT) RETURNS SETOF AssignedArea AS
+	$$
+	SELECT * FROM AssignedArea
+	WHERE idArea = idArea_r;
+	$$
+LANGUAGE SQL;
+
+-- get ASSIGNED area (doctor)
+CREATE OR REPLACE FUNCTION getAssignedAreaDoctor(idDoctor_r VARCHAR) RETURNS SETOF AssignedArea AS
+	$$
+	SELECT * FROM AssignedArea
+	WHERE idDoctor = idDoctor_r;
+	$$
+LANGUAGE SQL;
+
+-- get ALL areas
+CREATE OR REPLACE FUNCTION getAllAreas() RETURNS SETOF Area AS
+    $$
+    SELECT * FROM Area
+    $$
+LANGUAGE SQL; 
 
 -- add ASSIGNMENT for patient-doctor
 CREATE OR REPLACE FUNCTION addAssignment(idPatient_r VARCHAR,
@@ -203,17 +234,16 @@ CREATE OR REPLACE FUNCTION getMeasurements (idPatient_r VARCHAR) RETURNS SETOF M
 LANGUAGE SQL;
 
 -- get DOCTOR data
-CREATE OR REPLACE FUNCTION getDoctor (idDoctor VARCHAR) RETURNS SETOF Doctor AS
+CREATE OR REPLACE FUNCTION getDoctor (idDoctor_r VARCHAR) RETURNS SETOF Doctor AS
 	$$
-	SELECT * FROM Doctor
+	SELECT * FROM Doctor WHERE idDoctor = idDoctor_r
 	$$
 LANGUAGE SQL;
 
-
--- get AREA data
-CREATE OR REPLACE FUNCTION getAssignedArea(idDoctor_r VARCHAR) RETURNS SETOF AssignedArea AS
+-- get PATIENT data
+CREATE OR REPLACE FUNCTION getPatient (idPatient_r VARCHAR) RETURNS SETOF Patient AS
 	$$
-	SELECT * FROM AssignedArea WHERE idDoctor = idDoctor_r
+	SELECT * FROM Patient WHERE idPatient = idPatient_r
 	$$
 LANGUAGE SQL;
 
@@ -240,7 +270,6 @@ CREATE OR REPLACE FUNCTION getMedication (idPatient_r VARCHAR) RETURNS SETOF Med
 	SELECT * FROM Medication WHERE idPatient = idPatient_r ORDER BY idMedication DESC
 	$$
 LANGUAGE SQL;
-select * from allergy
 
 -- get DOCTOR'S PATIENTS
 CREATE OR REPLACE FUNCTION getDoctorPatient (idDoctor_r VARCHAR) RETURNS SETOF Assignment AS

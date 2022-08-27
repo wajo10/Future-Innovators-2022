@@ -4,4 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartUp"/>
+    android:background="@color/white"
+    tools:context=".StartUp">
+
+    <ImageView
+        android:id="@+id/clipart1"
+        android:layout_width="272dp"
+        android:layout_height="285dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_character"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.133"
+        tools:ignore="ImageContrastCheck,ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/welcometext_startup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jost_semibold"
+        android:text="@string/welcome"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clipart1"
+        app:layout_constraintVertical_bias="0.135" />
+
+    <TextView
+        android:id="@+id/paragraphtext_startup"
+        android:layout_width="382dp"
+        android:layout_height="92dp"
+        android:fontFamily="@font/jost_regular"
+        android:text="A new step towards medical technology at home. Start by creating an account, or logging in."
+        android:textAlignment="center"
+        android:textColor="#2e2e2e"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcometext_startup"
+        app:layout_constraintVertical_bias="0.061" />
+
+    <Button
+        android:id="@+id/loginbutton_startup"
+        android:layout_width="140dp"
+        android:layout_height="55dp"
+        android:textAllCaps="false"
+        android:text="Log In"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/jost_regular"
+        android:backgroundTint="#979BF0"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paragraphtext_startup"
+        app:layout_constraintVertical_bias="0.173" />
+
+    <Button
+        android:id="@+id/signupbutton_startup"
+        android:layout_width="140dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#979BF0"
+        android:elevation="4dp"
+        android:fontFamily="@font/jost_regular"
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginbutton_startup"
+        app:layout_constraintVertical_bias="0.109" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

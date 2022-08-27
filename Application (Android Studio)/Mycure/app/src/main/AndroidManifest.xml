@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mycure">
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +14,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mycure"
         tools:targetApi="31">
+        <activity
+            android:name=".HistoryPatient"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileDoctor"
+            android:exported="false" />
+        <activity
+            android:name=".ProfilePatient"
+            android:exported="false" />
+        <activity
+            android:name=".HomeDoctor"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpPatient"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpDoctor"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".HomePatient"
+            android:exported="false" />
+        <activity
+            android:name=".LogIn"
+            android:exported="false" />
         <activity
             android:name=".StartUp"
             android:exported="true">

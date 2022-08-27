@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".LogIn">
+
+    <TextView
+        android:id="@+id/title_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:fontFamily="@font/jost_semibold"
+        android:text="Log In"
+        android:textColor="#4E53D0"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.085" />
+
+    <ImageButton
+        android:id="@+id/backbutton_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041"
+        app:srcCompat="@drawable/ic_back_arrow" />
+
+    <EditText
+        android:id="@+id/emailentry_login"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#757575"
+        android:ems="10"
+        android:fontFamily="@font/jost_regular"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textColor="#757575"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_login"
+        app:layout_constraintVertical_bias="0.165" />
+
+    <EditText
+        android:id="@+id/passwordentry_login"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#757575"
+        android:ems="10"
+        android:fontFamily="@font/jost_regular"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textColor="#757575"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailentry_login"
+        app:layout_constraintVertical_bias="0.071" />
+
+    <Button
+        android:id="@+id/loginbutton_login"
+        android:layout_width="140dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#979BF0"
+        android:elevation="4dp"
+        android:fontFamily="@font/jost_regular"
+        android:text="Log In"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordentry_login"
+        app:layout_constraintVertical_bias="0.123" />
+
+    <TextView
+        android:id="@+id/subtitle_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jost_regular"
+        android:text="Don't have an account? Sign up:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginbutton_login"
+        app:layout_constraintVertical_bias="0.138" />
+
+    <Button
+        android:id="@+id/signupbutton_login"
+        android:layout_width="140dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#979BF0"
+        android:elevation="4dp"
+        android:fontFamily="@font/jost_regular"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle_login"
+        app:layout_constraintVertical_bias="0.137" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

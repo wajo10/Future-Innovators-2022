@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "LguRulZkE0SqhopxP9qlnT7iUV/pMIRKF/J6DYSabL4qZG58mYH9szc5MjhqJogDGbV/07ynDCD/bQnnC49Pbg==",
+  "dgSpecHash": "yAvY+RLMOjhSin5fFPyPUSVD5ZOlXDPN1h/3/KzeuUa2/2EHnhnA+E5pA7/DmTLXAc8rlnm4ksLOo9G1FA1wqA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Fabiola\\Documents\\Future-Innovators-2022\\Server\\Server\\Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Fabiola\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Fabiola\\.nuget\\packages\\npgsql\\6.0.4\\npgsql.6.0.4.nupkg.sha512",
-    "C:\\Users\\Fabiola\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\Fabiola\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Fabiola\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512",
+    "C:\\Users\\Fabiola\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\Fabiola\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\Fabiola\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

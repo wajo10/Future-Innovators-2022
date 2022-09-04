@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/jost_regular"
                     android:text="Full Name"
-                    android:textColor="#737373"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
                 <TextView
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/jost_regular"
                     android:text="ID: "
-                    android:textColor="#A0A0A0"
+                    android:textColor="#2e2e2e"
                     android:textSize="20sp" />
 
                 <TextView
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/jost_regular"
                     android:text="Birthdate: "
-                    android:textColor="#A0A0A0"
+                    android:textColor="#2e2e2e"
                     android:textSize="20sp" />
 
                 <TextView
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/jost_regular"
                     android:text="Location: "
-                    android:textColor="#A0A0A0"
+                    android:textColor="#2e2e2e"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -107,7 +107,7 @@
             android:layout_marginTop="15dp"
             android:fontFamily="@font/jost_regular"
             android:text="Email: "
-            android:textColor="#A0A0A0"
+            android:textColor="#2e2e2e"
             android:textSize="20sp" />
 
         <TextView
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/jost_regular"
             android:text="Phone Number: "
-            android:textColor="#A0A0A0"
+            android:textColor="#2e2e2e"
             android:textSize="20sp" />
 
         <TextView
@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/jost_regular"
             android:text="Height: "
-            android:textColor="#A0A0A0"
+            android:textColor="#2e2e2e"
             android:textSize="20sp" />
 
         <TextView
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/jost_regular"
             android:text="Weight: "
-            android:textColor="#A0A0A0"
+            android:textColor="#2e2e2e"
             android:textSize="20sp" />
 
     </LinearLayout>

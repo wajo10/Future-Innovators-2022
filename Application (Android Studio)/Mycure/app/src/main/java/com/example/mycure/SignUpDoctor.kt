@@ -32,7 +32,6 @@ class SignUpDoctor : AppCompatActivity() {
             var phoneNumber = findViewById<EditText>(R.id.phonenumberentry_signupdoctor)
             var specialty = findViewById<EditText>(R.id.specialtyentry_signupdoctor)
             var clinicName = findViewById<EditText>(R.id.clinicnameentry_signupdoctor)
-            var email = findViewById<EditText>(R.id.emailentry_signupdoctor)
             var password = findViewById<EditText>(R.id.passwordentry_signupdoctor)
 
             val intent = Intent(this, HomeDoctor::class.java)

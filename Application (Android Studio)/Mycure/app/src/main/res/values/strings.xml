@@ -3,7 +3,7 @@
     <string name="welcome">Welcome</string>
     <string name="todo">TODO</string>
     <string name="password">Password</string>
-    <string name="email">Email</string>
+    <string name="email">ID</string>
     <string name="full_name">Full name</string>
     <string name="identification_id">Identification (ID)</string>
     <string name="birthdate">Birthdate</string>

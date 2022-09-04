@@ -140,9 +140,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailentry_signupdoctor"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/phonenumberentry_signupdoctor"
@@ -214,24 +212,6 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameentry_signupdoctor"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/emailentry_signupdoctor"
-        android:layout_width="290dp"
-        android:layout_height="50dp"
-        android:backgroundTint="#757575"
-        android:ems="10"
-        android:fontFamily="@font/jost_regular"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:textColor="#757575"
-        android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clinicnameentry_signupdoctor"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

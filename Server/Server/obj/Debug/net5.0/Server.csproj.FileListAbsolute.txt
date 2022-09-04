@@ -79,5 +79,4 @@ C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\ref\Server.dll
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\Server.pdb
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
-C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\bin\Debug\net5.0\Server.StaticWebAssets.xml
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\refint\Server.dll

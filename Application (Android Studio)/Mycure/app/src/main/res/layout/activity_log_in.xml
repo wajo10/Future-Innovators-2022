@@ -97,7 +97,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/jost_regular"
         android:text="Don't have an account? Sign up:"
-        android:textColor="@color/black"
+        android:textColor="#2e2e2e"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -136,26 +136,23 @@
         app:layout_constraintVertical_bias="0.048">
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/patientchip_login"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:id="@+id/chippatient_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#B3B6F2"
             android:fontFamily="@font/jost_semibold"
             android:text="@string/patient"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/doctorchip_login"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:id="@+id/chipdoctor_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#B3B6F2"
             android:fontFamily="@font/jost_semibold"
             android:text="@string/doctor"
             android:textColor="@color/white"
             android:textSize="16sp" />
+
     </com.google.android.material.chip.ChipGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

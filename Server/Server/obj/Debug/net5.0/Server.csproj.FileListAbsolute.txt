@@ -45,7 +45,6 @@ C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\bin\Debug\net5.0
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\bin\Debug\net5.0\Server.runtimeconfig.json
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\bin\Debug\net5.0\Server.runtimeconfig.dev.json
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\bin\Debug\net5.0\Server.dll
-C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\bin\Debug\net5.0\ref\Server.dll
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\bin\Debug\net5.0\Server.pdb
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\bin\Debug\net5.0\Server.Views.dll
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\bin\Debug\net5.0\Server.Views.pdb
@@ -61,7 +60,6 @@ C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cache
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cs
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\staticwebassets\Server.StaticWebAssets.Manifest.cache
-C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\staticwebassets\Server.StaticWebAssets.xml
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\scopedcss\bundle\Server.styles.css
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\Server.TagHelpers.input.cache
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\Server.TagHelpers.output.cache
@@ -81,3 +79,5 @@ C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\ref\Server.dll
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\Server.pdb
 C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
+C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\bin\Debug\net5.0\Server.StaticWebAssets.xml
+C:\Users\Fabiola\Documents\Future-Innovators-2022\Server\Server\obj\Debug\net5.0\refint\Server.dll

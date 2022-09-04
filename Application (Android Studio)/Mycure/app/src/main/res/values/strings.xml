@@ -8,4 +8,6 @@
     <string name="identification_id">Identification (ID)</string>
     <string name="birthdate">Birthdate</string>
     <string name="location">Location</string>
+    <string name="patient">Patient</string>
+    <string name="doctor">Doctor</string>
 </resources>
